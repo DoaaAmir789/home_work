@@ -6,7 +6,7 @@ c) Add both grades and print the average grade as double.
 */
 void main() {
   List<Map<String, dynamic>> students = [
-    {'Ahmed': 90.6, 'Eman': 88.5},
+    {'Ahmed': 90.6},
     {'Ali': 85.7}
   ];
 
