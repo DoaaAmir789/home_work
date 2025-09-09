@@ -20,7 +20,7 @@ Explanation: s is an empty string "" after removing non-alphanumeric characters.
 Since an empty string reads the same forward and backward, it is a palindrome.
 */
 void main() {
-  String s = "A man, a plan, a canal: Panama";
+  String s = "abba";
   print(isPalindrome(s));
 }
 
@@ -32,7 +32,7 @@ bool isPalindrome(String s) {
   s = s.replaceAll(nonAlphanumeric, '');
 
   String reversedString = '';
-  for (int i = s.length - 1; i >= 0; i--) {
+  for (int i = s.length - 1; i >= s.length ~/ 2; i--) {
     String character = s[i];
     reversedString += character;
   }
