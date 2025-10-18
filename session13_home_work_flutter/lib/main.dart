@@ -15,6 +15,7 @@ class Design extends StatelessWidget {
           padding: const EdgeInsets.all(15.0),
           child: Column(
             children: [
+              Container(),
               TopSection(),
               const Divider(
                 height: 30,
