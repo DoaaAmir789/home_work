@@ -6,15 +6,18 @@ class OptionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      tileColor: Colors.white,
-      contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadiusGeometry.circular(12),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: ListTile(
+        tileColor: Colors.white,
+        contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadiusGeometry.circular(12),
+        ),
+        leading: Icon(Icons.circle_outlined),
+        title: Text(text),
+        titleTextStyle: TextStyle(color: Color(0xff2B0063), fontSize: 23),
       ),
-      leading: Icon(Icons.circle_outlined),
-      title: Text(text),
-      titleTextStyle: TextStyle(color: Color(0xff2B0063), fontSize: 23),
     );
   }
 }
