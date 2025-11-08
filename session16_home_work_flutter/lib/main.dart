@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:session16_home_work_flutter/screens/start_page.dart';
+import 'package:session16_home_work_flutter/screens/start_screen.dart';
 
 void main() {
   runApp(const QuizApp());
@@ -10,6 +10,6 @@ class QuizApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: StartPage());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: StartScreen());
   }
 }

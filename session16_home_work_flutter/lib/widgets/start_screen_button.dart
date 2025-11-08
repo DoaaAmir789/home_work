@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:session16_home_work_flutter/screens/questions_page.dart';
+import 'package:session16_home_work_flutter/styles/app_text_style.dart';
 import 'package:session16_home_work_flutter/widgets/custom_button.dart';
 
-class StartPageButton extends StatelessWidget {
-  const StartPageButton({super.key});
+class StartScreenButton extends StatelessWidget {
+  const StartScreenButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +17,7 @@ class StartPageButton extends StatelessWidget {
           MaterialPageRoute(builder: (context) => QuestionsPage()),
         );
       },
-      child: Text(
-        'Start Quiz',
-        style: TextStyle(color: Color(0xff2B0063), fontSize: 24),
-      ),
+      child: Text('Start Quiz', style: AppTextStyle.h2()),
     );
   }
 }
