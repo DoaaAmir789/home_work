@@ -1,7 +1,7 @@
-import 'package:current/widgets/expanded_image_stack.dart';
-import 'package:current/widgets/greeting_section.dart';
-import 'package:current/widgets/start_screen_action_button.dart';
 import 'package:flutter/material.dart';
+import 'package:session17_home_work_flutter/widgets/expanded_image_stack.dart';
+import 'package:session17_home_work_flutter/widgets/greeting_section.dart';
+import 'package:session17_home_work_flutter/widgets/start_screen_action_button.dart';
 
 class StartScreen extends StatelessWidget {
   const StartScreen({super.key});

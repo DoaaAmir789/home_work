@@ -1,7 +1,7 @@
-import 'package:current/screens/questions_screen.dart';
-import 'package:current/styles/app_text_styles.dart';
-import 'package:current/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:session17_home_work_flutter/screens/questions_screen.dart';
+import 'package:session17_home_work_flutter/styles/app_text_styles.dart';
+import 'package:session17_home_work_flutter/widgets/custom_button.dart';
 
 class StartScreenActionButton extends StatelessWidget {
   const StartScreenActionButton({super.key});

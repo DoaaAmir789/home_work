@@ -1,14 +1,18 @@
-import 'package:current/models/question_model.dart';
+import 'package:session17_home_work_flutter/models/question_model.dart';
 
 class QuestionManager {
   List<QuestionModel> questions = getQuestions();
 
-  void selectedAnswer(QuestionModel question, List<String> answer) {
-    question.userAnswer = answer;
+  void selectMultipleAnswer(QuestionModel question, String answer) {
+    if (question.userAnswer.contains(answer)) {
+      question.userAnswer.remove(answer);
+    } else {
+      question.userAnswer.add(answer);
+    }
   }
 
-  void updateAnswers(QuestionModel question, String unselectAnswer) {
-    question.userAnswer.remove(unselectAnswer);
+  void selectSingleAnswer(QuestionModel question, String answer) {
+    question.userAnswer = [answer];
   }
 
   List<QuestionModel> get viewAllQuestions => questions;

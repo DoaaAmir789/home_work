@@ -20,8 +20,9 @@ class _OptionsState extends State<Options> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Column(
-        children: List.generate(question.options.length, (i) {
-          String optionText = question.options[i];
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: List.generate(question.options.length, (index) {
+          String optionText = question.options[index];
           bool isSelected = question.userAnswer.contains(optionText);
 
           return OptionTile(
@@ -30,13 +31,9 @@ class _OptionsState extends State<Options> {
             onTap: () {
               setState(() {
                 if (question.isMultipleAnswer) {
-                  if (isSelected) {
-                    widget.manager.updateAnswers(question, optionText);
-                  } else {
-                    question.userAnswer.add(optionText);
-                  }
+                  widget.manager.selectMultipleAnswer(question, optionText);
                 } else {
-                  question.userAnswer = [optionText];
+                  widget.manager.selectSingleAnswer(question, optionText);
                 }
               });
             },

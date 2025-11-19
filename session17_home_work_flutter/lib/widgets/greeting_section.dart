@@ -1,5 +1,5 @@
-import 'package:current/styles/app_text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:session17_home_work_flutter/styles/app_text_styles.dart';
 
 class GreetingSection extends StatelessWidget {
   const GreetingSection({super.key});

@@ -27,7 +27,6 @@ class OptionTile extends StatelessWidget {
                   ? [Color(0xffB8B2FF), Color(0xffC6C2F8)]
                   : [Colors.white, Colors.white],
             ),
-
             borderRadius: BorderRadius.circular(12),
           ),
           child: ListTile(

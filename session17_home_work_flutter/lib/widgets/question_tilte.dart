@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:session17_home_work_flutter/models/question_manager.dart';
+import 'package:session17_home_work_flutter/styles/app_text_styles.dart';
 
 class QuestionTitle extends StatelessWidget {
   final QuestionManager manager;
