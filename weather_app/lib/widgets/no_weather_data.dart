@@ -11,11 +11,11 @@ class NoWeatherView extends StatelessWidget {
         children: [
           Text(
             'there is no weather 😞 start',
-            style: TextStyle(fontSize: 30, fontWeight: FontWeight.w400),
+            style: TextStyle(fontSize: 28, fontWeight: FontWeight.w400),
           ),
           Text(
             'searching now 🔎',
-            style: TextStyle(fontSize: 30, fontWeight: FontWeight.w400),
+            style: TextStyle(fontSize: 28, fontWeight: FontWeight.w400),
           ),
         ],
       ),
