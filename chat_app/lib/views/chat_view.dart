@@ -1,72 +1,69 @@
 import 'package:chat_app/assets.dart';
+import 'package:chat_app/models/chat_message_model.dart';
 import 'package:chat_app/theme/app_colors.dart';
 import 'package:chat_app/theme/app_text_styles.dart';
-import 'package:chat_app/widgets/chat_bubble.dart';
-import 'package:chat_app/widgets/feature_item.dart';
+import 'package:chat_app/widgets/app_header.dart';
+import 'package:chat_app/widgets/message.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class ChatView extends StatelessWidget {
+class ChatView extends StatefulWidget {
   const ChatView({super.key});
 
+  @override
+  State<ChatView> createState() => _ChatViewState();
+}
+
+class _ChatViewState extends State<ChatView> {
+  List<ChatMessageModel> messages = [
+    ChatMessageModel(text: 'Hello chatGPT,how are you today?', sender: 'User'),
+    ChatMessageModel(
+      text: 'Hello, I\'m fine , how can i help you?',
+      sender: 'Ai',
+    ),
+  ];
+  String newMessage = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         leading: Icon(Icons.arrow_back_rounded),
-        title: Row(
-          spacing: 20,
-          children: [
-            SvgPicture.asset(Assets.botIcon),
-            Column(
-              children: [
-                Text(
-                  'ChatGPT',
-                  style: AppTextStyles.bold(
-                    color: AppColors.primary,
-                    fontSize: 20,
-                  ),
-                ),
-                Text('Online', style: AppTextStyles.medium17()),
-              ],
-            ),
-          ],
-        ),
+        title: AppHeader(title: 'ChatGPT', status: 'Online'),
         actions: [
           SvgPicture.asset(Assets.volumeIcon),
           SvgPicture.asset(Assets.exportIcon),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(30),
-        child: Column(
+      body: SizedBox(
+        height: double.infinity,
+        child: Stack(
+          alignment: AlignmentGeometry.bottomCenter,
           children: [
-            FeatureItem(
-              featureDescription: 'Explain',
-              featureImage: Assets.explainIcon,
+            ListView.builder(
+              padding: EdgeInsets.all(10),
+              itemCount: messages.length,
+              itemBuilder: (context, index) {
+                return Message(message: messages[index]);
+              },
             ),
-            ChatBubble(text: 'Explain Quantum physics'),
-            ChatBubble(text: 'What are wormholes explain like i am 5'),
-            FeatureItem(
-              featureDescription: 'Write & edit',
-              featureImage: Assets.editIcon,
-            ),
-            ChatBubble(text: 'Write a tweet about global warming'),
-            ChatBubble(text: 'Write a poem about flower and love'),
-            ChatBubble(text: 'Write a rap song lyrics about'),
-            FeatureItem(
-              featureDescription: 'Translate',
-              featureImage: Assets.translatIcon,
-            ),
-            ChatBubble(text: 'Explain Quantum physics'),
-            ChatBubble(text: 'What are wormholes explain like i am 5'),
             TextField(
+              onSubmitted: (value) {
+                newMessage = value;
+                messages.add(
+                  ChatMessageModel(text: newMessage, sender: 'User'),
+                );
+                setState(() {});
+              },
+              style: AppTextStyles.bold(fontSize: 13, color: AppColors.primary),
               decoration: InputDecoration(
                 hint: Text('Write your message'),
+                fillColor: Colors.white,
+                suffixIcon: SvgPicture.asset(Assets.sendIcon),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(30),
+                  borderSide: BorderSide.none,
                 ),
               ),
             ),

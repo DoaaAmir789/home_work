@@ -18,9 +18,12 @@ class OnBoardView extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(height: 60),
-                ViewTitle(),
+                ViewTitle(text: 'You AI Assistant'),
                 SizedBox(height: 20),
-                ViewDescription(),
+                ViewDescription(
+                  description:
+                      'Using this software,you can ask you questions and receive articles using artificial intelligence assistant',
+                ),
                 Expanded(
                   child: Image.asset(
                     Assets.onBoardImage,

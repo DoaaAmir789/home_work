@@ -1,4 +1,4 @@
-import 'package:chat_app/views/on_board_view.dart';
+import 'package:chat_app/views/chat_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,6 +10,10 @@ class ChatApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: OnBoardView());
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(fontFamily: 'Nunito'),
+      home: ChatView(),
+    );
   }
 }
