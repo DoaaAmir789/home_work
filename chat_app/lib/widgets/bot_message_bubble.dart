@@ -22,7 +22,8 @@ class BotMessageBubble extends StatelessWidget {
           ),
         ),
         Container(
-          padding: EdgeInsets.all(20),
+          width: 200,
+          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
           decoration: BoxDecoration(
             color: Colors.grey.shade200,
             borderRadius: BorderRadius.only(

@@ -1,15 +1,24 @@
+import 'package:auth_with_cubit/cubits/auth_cubit/auth_cubit.dart';
+import 'package:auth_with_cubit/themes/app_colors.dart';
 import 'package:auth_with_cubit/themes/app_decoration.dart';
+import 'package:auth_with_cubit/widgets/custom_form_text_field.dart';
 import 'package:auth_with_cubit/widgets/forget_password.dart';
+import 'package:auth_with_cubit/widgets/password_text_form_field.dart';
 import 'package:auth_with_cubit/widgets/view_button.dart';
-import 'package:auth_with_cubit/widgets/view_password_field.dart';
-import 'package:auth_with_cubit/widgets/view_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ViewLoginForm extends StatelessWidget {
-  final GlobalKey<FormState> _formKey;
-  const ViewLoginForm({super.key, required GlobalKey<FormState> formKey})
-    : _formKey = formKey;
+class ViewLoginForm extends StatefulWidget {
+  const ViewLoginForm({super.key});
 
+  @override
+  State<ViewLoginForm> createState() => _ViewLoginFormState();
+}
+
+class _ViewLoginFormState extends State<ViewLoginForm> {
+  final _formKey = GlobalKey<FormState>();
+  String? email;
+  String? password;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,8 +29,11 @@ class ViewLoginForm extends StatelessWidget {
         child: Column(
           children: [
             // Email Field
-            ViewTextField(
-              textInputType: TextInputType.emailAddress,
+            CustomFormTextField(
+              onSaved: (value) {
+                email = value;
+              },
+              keyboardType: TextInputType.emailAddress,
               labelText: 'Email',
               prefixIcon: const Icon(Icons.email_outlined),
               focuseColor: Color(0xFF667eea),
@@ -37,10 +49,12 @@ class ViewLoginForm extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             // Password Field
-            ViewPasswordField(
+            PasswordTextFormField(
+              onSaved: (value) {
+                password = value;
+              },
               labelText: 'Password',
-              focuseColor: Color(0xFF667eea),
-              prefixIcon: const Icon(Icons.lock_outline),
+              focuseColor: AppColors.primary,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your password';
@@ -58,8 +72,16 @@ class ViewLoginForm extends StatelessWidget {
             // Login Button
             ViewButton(
               buttonText: 'Login',
-              buttonColor: const Color(0xFF667eea),
-              formKey: _formKey,
+              buttonColor: AppColors.primary,
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  _formKey.currentState!.save();
+                  context.read<AuthCubit>().authentication(
+                    email: email!,
+                    password: password!,
+                  );
+                }
+              },
             ),
           ],
         ),

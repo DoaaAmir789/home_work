@@ -1,3 +1,4 @@
+import 'package:auth_with_cubit/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class ForgetPassword extends StatelessWidget {
@@ -14,7 +15,7 @@ class ForgetPassword extends StatelessWidget {
         child: const Text(
           'Forgot Password?',
           style: TextStyle(
-            color: Color(0xFF667eea),
+            color: AppColors.primary,
             fontWeight: FontWeight.w600,
           ),
         ),

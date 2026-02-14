@@ -1,18 +1,24 @@
+import 'package:auth_with_cubit/cubits/auth_cubit/auth_cubit.dart';
+import 'package:auth_with_cubit/themes/app_colors.dart';
 import 'package:auth_with_cubit/themes/app_decoration.dart';
+import 'package:auth_with_cubit/widgets/custom_form_text_field.dart';
+import 'package:auth_with_cubit/widgets/password_text_form_field.dart';
 import 'package:auth_with_cubit/widgets/view_button.dart';
-import 'package:auth_with_cubit/widgets/view_password_field.dart';
-import 'package:auth_with_cubit/widgets/view_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ViewSignupForm extends StatelessWidget {
-  final GlobalKey<FormState> _formKey;
-  String password;
-  ViewSignupForm({
-    super.key,
-    required this.password,
-    required GlobalKey<FormState> formKey,
-  }) : _formKey = formKey;
+class ViewSignupForm extends StatefulWidget {
+  const ViewSignupForm({super.key});
 
+  @override
+  State<ViewSignupForm> createState() => _ViewSignupFormState();
+}
+
+class _ViewSignupFormState extends State<ViewSignupForm> {
+  final _formKey = GlobalKey<FormState>();
+  String? name;
+  String? email;
+  String? password;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,9 +29,12 @@ class ViewSignupForm extends StatelessWidget {
         child: Column(
           children: [
             // Name Field
-            ViewTextField(
+            CustomFormTextField(
+              onSaved: (value) {
+                name = value;
+              },
               focuseColor: Color(0xFF11998e),
-              textInputType: TextInputType.name,
+              keyboardType: TextInputType.name,
               labelText: 'Full Name',
               prefixIcon: const Icon(Icons.person_outline),
               validator: (value) {
@@ -37,9 +46,12 @@ class ViewSignupForm extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             // Email Field
-            ViewTextField(
-              focuseColor: Color(0xFF11998e),
-              textInputType: TextInputType.emailAddress,
+            CustomFormTextField(
+              onSaved: (value) {
+                email = value;
+              },
+              focuseColor: AppColors.secondary,
+              keyboardType: TextInputType.emailAddress,
               labelText: 'Email',
               prefixIcon: const Icon(Icons.email_outlined),
               validator: (value) {
@@ -54,10 +66,12 @@ class ViewSignupForm extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             // Password Field
-            ViewPasswordField(
+            PasswordTextFormField(
+              onSaved: (value) {
+                password = value;
+              },
               labelText: 'Password',
-              focuseColor: Color(0xFF11998e),
-              prefixIcon: const Icon(Icons.lock_outline),
+              focuseColor: AppColors.secondary,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your password';
@@ -65,16 +79,14 @@ class ViewSignupForm extends StatelessWidget {
                 if (value.length < 6) {
                   return 'Password must be at least 6 characters';
                 }
-                password = value;
                 return null;
               },
             ),
             const SizedBox(height: 16),
             // Confirm Password Field
-            ViewPasswordField(
+            PasswordTextFormField(
               labelText: 'Confirm Password',
-              focuseColor: Color(0xFF11998e),
-              prefixIcon: const Icon(Icons.lock_outline),
+              focuseColor: AppColors.secondary,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please confirm your password';
@@ -89,8 +101,16 @@ class ViewSignupForm extends StatelessWidget {
             // Signup Button
             ViewButton(
               buttonText: 'Sign Up',
-              buttonColor: const Color(0xFF11998e),
-              formKey: _formKey,
+              buttonColor: AppColors.secondary,
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  _formKey.currentState!.save();
+                  context.read<AuthCubit>().authentication(
+                    email: email!,
+                    password: password!,
+                  );
+                }
+              },
             ),
           ],
         ),

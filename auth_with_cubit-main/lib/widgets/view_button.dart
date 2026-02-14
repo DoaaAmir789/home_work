@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 class ViewButton extends StatelessWidget {
   final String buttonText;
   final Color buttonColor;
+  final VoidCallback onPressed;
+
   const ViewButton({
     super.key,
     required this.buttonText,
     required this.buttonColor,
-    required GlobalKey<FormState> formKey,
-  }) : _formKey = formKey;
-
-  final GlobalKey<FormState> _formKey;
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +18,7 @@ class ViewButton extends StatelessWidget {
       width: double.infinity,
       height: 56,
       child: ElevatedButton(
-        onPressed: () async {
-          if (_formKey.currentState!.validate()) {
-            await Future.delayed(Duration(seconds: 2), () {});
-          }
-        },
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: buttonColor,
           foregroundColor: Colors.white,

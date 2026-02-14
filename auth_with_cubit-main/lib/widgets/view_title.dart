@@ -8,7 +8,7 @@ class ViewTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 32,
         fontWeight: FontWeight.bold,
         color: Colors.white,

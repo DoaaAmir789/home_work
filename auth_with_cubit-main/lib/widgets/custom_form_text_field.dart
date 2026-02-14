@@ -1,26 +1,36 @@
 import 'package:flutter/material.dart';
 
-class ViewTextField extends StatelessWidget {
+class CustomFormTextField extends StatelessWidget {
   final String labelText;
-  final Icon prefixIcon;
-  final TextInputType textInputType;
+  final TextInputType? keyboardType;
   final Color focuseColor;
-  String? Function(String?) validator;
-  ViewTextField({
+  final bool obscureText;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
+  final void Function(String?)? onSaved;
+  final String? Function(String?)? validator;
+
+  const CustomFormTextField({
     super.key,
     required this.focuseColor,
-    required this.textInputType,
     required this.labelText,
-    required this.prefixIcon,
-    required this.validator,
+    this.onSaved,
+    this.keyboardType,
+    this.obscureText = false,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.validator,
   });
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      keyboardType: textInputType,
+      onSaved: onSaved,
+      keyboardType: keyboardType,
+      obscureText: obscureText,
       decoration: InputDecoration(
         labelText: labelText,
         prefixIcon: prefixIcon,
+        suffixIcon: suffixIcon,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),

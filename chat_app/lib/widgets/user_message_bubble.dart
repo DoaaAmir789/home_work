@@ -12,7 +12,8 @@ class UserMessageBubble extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Container(
-          padding: EdgeInsets.all(20),
+          width: 200,
+          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
           decoration: BoxDecoration(
             color: AppColors.primary,
             borderRadius: BorderRadius.only(

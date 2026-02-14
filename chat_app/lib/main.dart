@@ -1,7 +1,7 @@
-import 'package:chat_app/views/chat_view.dart';
+import 'package:chat_app/views/on_board_view.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
   runApp(const ChatApp());
 }
 
@@ -13,7 +13,7 @@ class ChatApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Nunito'),
-      home: ChatView(),
+      home: OnBoardView(),
     );
   }
 }

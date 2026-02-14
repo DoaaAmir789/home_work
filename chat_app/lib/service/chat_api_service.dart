@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 
 class ChatApiService {
   final Dio dio;
-  final String apiKey = 'AIzaSyCcE3sxHftQBYrxhTKC241mKAQGOcg_x4w';
+  final String apiKey = 'AIzaSyBVUFKayWvsk8lVEDhz-tcVf-Vbqkp__lY';
   final String baseUrl =
       'https://generativelanguage.googleapis.com/v1beta/models';
 

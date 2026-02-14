@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class Link extends StatelessWidget {
+class ViewFooter extends StatelessWidget {
   final String question;
   final String buttonText;
   final VoidCallback onPressed;
-  const Link({
+  const ViewFooter({
     super.key,
     required this.buttonText,
     required this.question,
@@ -24,7 +24,7 @@ class Link extends StatelessWidget {
           onPressed: onPressed,
           child: Text(
             buttonText,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 15,
               fontWeight: FontWeight.bold,
